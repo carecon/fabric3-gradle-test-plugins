@@ -9,8 +9,13 @@
  * after a full build has been run. Note the 'rsaPreMasterSecretFix' parameter is required as a workaround for this JDK bug:
  * https://bugs.openjdk.java.net/browse/JDK-8030806
  *
- * Note the 'uploadArchives' tasks requires a gradle.properties file to be present containing private key information and authentication parameters
- * (sonatypeUsername and sonatypePassword).
+ * Note the 'uploadArchives' tasks requires a gradle.properties file to be present containing private key information and authentication parameters:
+ * - sonatypeUsername
+ * - sonatypePassword
+ * - signing.keyId=<keyIdLast8Characters> # like 123456F7
+ * - signing.password=<yourPassword>
+ * - signing.secretKeyRingFile=/Users/username/.gnupg/secring.gpg
+ * - More information at https://docs.gradle.org/current/userguide/signing_plugin.html#sec:signatory_credentials
  */
 project.description = 'Fabric3 Gradle test plugins'
 
@@ -47,8 +52,7 @@ def distributions() {
 }
 
 configure(distributions()) {
-    group = fabric3Group
-    version = fabric3Version
+    group = fabric3GradleGroup
     def releaseBuild = !version.endsWith('SNAPSHOT');
 
     apply plugin: 'java'
