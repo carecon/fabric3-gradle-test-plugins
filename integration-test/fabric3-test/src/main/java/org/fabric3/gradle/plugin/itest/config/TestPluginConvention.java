@@ -35,7 +35,7 @@ public class TestPluginConvention {
     private String systemConfig;
     private File systemConfigFile;
 
-    private String runtimeVersion = "3.0.1-SNAPSHOT"; // TODO put into file that is generated from gradle with correct version
+    private String runtimeVersion = "3.0.1-SNAPSHOT";
     private String compositeNamespace = "urn:fabric3.org";
     private String compositeName = "TestComposite";
     private String errorText;

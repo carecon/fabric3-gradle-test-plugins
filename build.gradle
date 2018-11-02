@@ -175,6 +175,32 @@ configure(distributions()) {
         }
     }
 }
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
+
+// Version & group
+task('updateVersionInformationInFiles') {
+    doLast {
+        // TODO instead of two files, join this into a Constants.java file in a core module
+
+        def file = new File("$projectDir/integration-test/fabric3-test/src/main/java/org/fabric3/gradle/plugin/itest/config/TestPluginConvention.java")
+        def content = file.getText("UTF-8")
+                .replaceFirst("(private String runtimeVersion = \")([^\"]+)(\";)", "\$1$version\$3")
+        file.write(content, "UTF-8")
+
+        file = new File("$projectDir/integration-test/fabric3-test/src/main/java/org/fabric3/gradle/plugin/itest/impl/Fabric3TestTask.java")
+        content = file.getText("UTF-8")
+                .replaceFirst("(private static final String FABRIC3_GRADLE = \")([^\"]+)(\";)", "\$1$fabric3GradleGroup\$3")
+        file.write(content, "UTF-8")
+
+
+        def files =  fileTree("$projectDir/integration-test").filter { it.isFile() && it.name.equals('sca-contribution.xml') }.files
+        files.forEach {
+            content = it.getText("UTF-8")
+                    .replaceAll("(<import.java package=\"org.fabric3[^\"]*\" version=\")([^\"]+)(\"/>)", "\$1$version\$3")
+            it.write(content, "UTF-8")
+        }
+    }
+}
+
+configure(distributions()) {
+    compileJava.dependsOn updateVersionInformationInFiles
 }
