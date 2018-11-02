@@ -81,6 +81,11 @@ configure(distributions()) {
         from javadoc.destinationDir
     }
 
+    javadoc {
+        include 'com/company/project/pkg/*'
+        options.addBooleanOption('html5', true)
+    }
+
     artifacts {
         archives jar
         archives sourcesJar

@@ -16,7 +16,7 @@
  */
 package org.fabric3.gradle.plugin.api.test;
 
-import org.gradle.logging.ProgressLogger;
+import org.gradle.internal.logging.progress.ProgressLogger;
 
 /**
  * Creates {@link IntegrationTests}s that run integration tests.

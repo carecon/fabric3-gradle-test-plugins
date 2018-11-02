@@ -80,10 +80,10 @@ import org.gradle.api.Project;
 import org.gradle.api.logging.Logger;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.internal.service.ServiceRegistry;
-import org.gradle.logging.ProgressLogger;
-import org.gradle.logging.ProgressLoggerFactory;
-import org.gradle.logging.StyledTextOutput;
-import org.gradle.logging.StyledTextOutputFactory;
+import org.gradle.internal.logging.progress.ProgressLogger;
+import org.gradle.internal.logging.progress.ProgressLoggerFactory;
+import org.gradle.internal.logging.text.StyledTextOutput;
+import org.gradle.internal.logging.text.StyledTextOutputFactory;
 
 /**
  * Boots an embedded Fabric3 runtime and runs integration tests for the current project and other configured projects.
@@ -228,7 +228,7 @@ public class Fabric3TestTask extends DefaultTask {
             throw new Fabric3PluginException("There were failing integration tests.");
         } else {
             displaySummary(recorder);
-            progressLogger.completed("COMPLETED");
+            progressLogger.completed();
         }
     }
 

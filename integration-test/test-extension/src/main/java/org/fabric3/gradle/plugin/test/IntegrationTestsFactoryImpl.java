@@ -23,7 +23,7 @@ import org.fabric3.gradle.plugin.api.test.IntegrationTestsFactory;
 import org.fabric3.gradle.plugin.api.test.TestRecorder;
 import org.fabric3.spi.container.wire.Wire;
 import org.fabric3.test.spi.TestWireHolder;
-import org.gradle.logging.ProgressLogger;
+import org.gradle.internal.logging.progress.ProgressLogger;
 import org.oasisopen.sca.annotation.Reference;
 
 /**
