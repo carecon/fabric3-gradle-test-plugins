@@ -4,6 +4,7 @@ dependencies {
     compile group: fabric3Group, name: 'fabric3-api', version: fabric3Version
     compile group: fabric3Group, name: 'fabric3-plugin-base', version: fabric3Version
     compile group: fabric3Group, name: 'fabric3-host-api', version: fabric3Version
+    compile group: fabric3GradleGroup, name: 'fabric3-plugin-core', version: fabric3GradleVersion
 
     compile group: 'org.eclipse.aether', name: 'aether-api', version: aetherVersion
     compile group: 'org.eclipse.aether', name: 'aether-util', version: aetherVersion
